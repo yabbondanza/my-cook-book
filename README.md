@@ -6,6 +6,13 @@
 - Michel Alexandrino de Souza
 - Yasmim Danzieri Abbondanza Laurentino
 
+## Visão Geral
+
+- [Descrição do Projeto](#descrição-do-projeto)
+- [Tecnologias Utilizadas](#tecnologias-utilizadas)
+- [Estrutura do Projeto](#estrutura-do-projeto)
+- [Funcionalidades](#funcionalidades)
+
 ## Descrição do Projeto
 
 O projeto "myCookBook" é uma aplicação web que tem como objetivo conectar entusiastas da culinária, permitindo que eles compartilhem, salvem e curtam receitas. Inspirado no conceito de uma rede social, esta plataforma oferece aos usuários a capacidade de criar, experimentar, aprimorar e compartilhar suas receitas favoritas. Além disso, o sistema facilita a criação e compartilhamento de versões personalizadas de receitas, como versões vegetarianas, sem lactose e muito mais.
@@ -16,6 +23,23 @@ O projeto "myCookBook" é uma aplicação web que tem como objetivo conectar ent
 - **Frontend**: JavaScript e ReactJS
 - **Banco de Dados**: MySQL
 - **Servidor**: Elephant SQL
+
+## Estrutura do Projeto
+
+O projeto está organizado da seguinte forma:
+
+- **api**: Contém o backend da aplicação.
+- **app**: Contém o frontend da aplicação.
+
+```plaintext
+my-cook-book/
+│
+├── api/
+│
+├── app/
+│
+└── ...
+```
 
 ## Funcionalidades
 
