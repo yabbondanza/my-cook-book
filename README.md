@@ -19,9 +19,9 @@ O projeto "myCookBook" é uma aplicação web que tem como objetivo conectar ent
 
 ## Tecnologias Utilizadas
 
-- **Backend**: Java e Spring Boot
-- **Frontend**: JavaScript e ReactJS
-- **Banco de Dados**: MySQL
+- **Backend**: Java e Spring Boot [Java 17][Spring Boot 3.1.5]
+- **Frontend**: JavaScript e ReactJS [ReactJS 18.2.0][Bootstrap 5.2.3][React-Bootstrap 2.7.4]
+- **Banco de Dados**: PostgreSQL
 - **Servidor**: Elephant SQL
 
 ## Estrutura do Projeto
