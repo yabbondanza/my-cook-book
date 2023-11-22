@@ -11,6 +11,8 @@
 - [Descrição do Projeto](#descrição-do-projeto)
 - [Tecnologias Utilizadas](#tecnologias-utilizadas)
 - [Estrutura do Projeto](#estrutura-do-projeto)
+- [Uso de Branches](#uso-de-branches)
+- [Regras de Commit](#regras-de-commit)
 - [Funcionalidades](#funcionalidades)
 
 ## Descrição do Projeto
@@ -30,6 +32,9 @@ O projeto está organizado da seguinte forma:
 
 - **api**: Contém o backend da aplicação.
 - **app**: Contém o frontend da aplicação.
+- **Padrões Adotados**: Contém documentos de padrões adotados pelo projeto.
+- **Requisitos**: Contém documentos de requisitos do projeto.
+- **Diagramas**: Contém diagramas pertinentes ao projeto.
 
 ```plaintext
 my-cook-book/
@@ -38,8 +43,39 @@ my-cook-book/
 │
 ├── app/
 │
-└── ...
+├── Padrões Adotados/
+│   └── Regras de Verificação e Análise de Requisitos.md
+│
+├── Requisitos/
+│   └── Documento de Requisitos - myCookBook.md
+│
+└── Diagramas/
+    └── ...
 ```
+
+## Uso de Branches
+
+- **Feat**: Esse padrão é usado para criar novas funcionalidades. O nome da branch deve iniciar com o sufixo feat/ seguido de um título conciso, com no máximo 4 palavras.
+
+Exemplo:
+```plaintext
+feat/novo-botão-de-salvar
+```
+
+- **Fix**: Esse padrão é usado para corrigir bugs ou problemas. O nome da branch deve iniciar com o sufixo fix/ seguido de um título conciso, com no máximo 4 palavras.
+
+Exemplo:
+```plaintext
+fix/erro-de-conversão-de-data
+```
+
+## Regras de Commit
+
+Padrões de commit adotados: **fix** e **feature** no início da mensagem de commit.
+
+- **Fix**: Esse padrão é usado para corrigir bugs ou problemas. A descrição deve fornecer mais detalhes sobre o problema que foi corrigido e como ele foi resolvido.
+
+- **Feature**: Esse padrão é usado para adicionar novas funcionalidades ao projeto. A descrição deve fornecer mais detalhes sobre a funcionalidade que foi adicionada.
 
 ## Funcionalidades
 
