@@ -47,10 +47,15 @@ my-cook-book/
 │   └── Regras de Verificação e Análise de Requisitos.md
 │
 ├── Requisitos/
-│   └── Documento de Requisitos - myCookBook.md
+│   └── Documento de Requisitos - myCookBook.doc
+│   └── Documento de Requisitos - myCookBook.pdf
 │
-└── Diagramas/
-    └── ...
+├── Diagramas/
+│   └── Diagrama de Classes.png
+│   └── Diagrama de Implantação.png
+│   └── Diagramas de Sequência/
+│       └── ...
+│   └── Diagrama de Pacotes.png
 ```
 
 ## Uso de Branches
