@@ -13,6 +13,7 @@
 - [Estrutura do Projeto](#estrutura-do-projeto)
 - [Uso de Branches](#uso-de-branches)
 - [Regras de Commit](#regras-de-commit)
+- [Convenções Adotadas](#convenções-adotadas)
 - [Funcionalidades](#funcionalidades)
 
 ## Descrição do Projeto
@@ -82,6 +83,18 @@ Padrões de commit adotados: **fix** e **feature** no início da mensagem de com
 
 - **Feature**: Esse padrão é usado para adicionar novas funcionalidades ao projeto. A descrição deve fornecer mais detalhes sobre a funcionalidade que foi adicionada.
 
+## Convenções Adotadas
+
+- **CamelCase para Nomes de Variáveis e Funções**: Utilização de camelCase para nomes de variáveis e funções. Por exemplo: nomeDaVariavel, nomeDaFuncao(). 
+
+- **Padrão de Nomenclatura Descritivo**: Nomes descritivos e significativos para variáveis, funções e arquivos, evitando abreviações desnecessárias.
+
+- **Documentação Clara e Concisa**: Documentação detalhada, especialmente para funções e métodos. Comentários explicativos para destacar partes do código que podem não ser imediatamente óbvias.
+
+- **Estrutura de Diretórios Organizada**: Estrutura de diretórios organizada e lógica. 
+
+- **Utilização de .gitignore**: Um arquivo .gitignore para evitar que arquivos desnecessários, como arquivos de compilação, arquivos temporários e dependências, sejam enviados ao repositório. Mantendo o repositório mais limpo e evitando problemas relacionados a arquivos indesejados.
+
 ## Funcionalidades
 
 O "myCookBook" oferece uma variedade de funcionalidades para os usuários:
@@ -102,4 +115,4 @@ O "myCookBook" oferece uma variedade de funcionalidades para os usuários:
 
 ---
 
-Esperamos que o "myCookBook" seja uma plataforma útil e divertida para todos os entusiastas da culinária. Desfrute da experiência de compartilhar e experimentar receitas deliciosas!
+Projeto desenvolvido para a disciplina Engenharia de Software, realizada na Universidade Federal de Lavras.
