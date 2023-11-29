@@ -1,6 +1,7 @@
 package com.cookingclub.mycookbook.model;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import jakarta.persistence.*;
@@ -37,4 +38,7 @@ public class Receita {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
+
+    @OneToMany (fetch = FetchType.LAZY, mappedBy = "receita")
+    private List<Comentario> comentarios;
 }

@@ -28,4 +28,7 @@ public class Usuario {
 
     @OneToMany (fetch = FetchType.LAZY, mappedBy = "usuario")
     private List<Receita> receitas;
+
+    @OneToMany (fetch = FetchType.LAZY, mappedBy = "usuario")
+    private Comentario comentario;
 }
