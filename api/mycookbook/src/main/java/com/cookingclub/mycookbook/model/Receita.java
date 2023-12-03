@@ -6,9 +6,13 @@ import java.util.List;
 import org.springframework.format.annotation.DateTimeFormat;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "receita")
+@Getter
+@Setter
 @Data
 public class Receita {
     @Id
@@ -41,4 +45,9 @@ public class Receita {
 
     @OneToMany (fetch = FetchType.LAZY, mappedBy = "receita")
     private List<Comentario> comentarios;
+
+
+    public void setId(Long idReceita) {
+        this.idReceita = idReceita;
+    }
 }

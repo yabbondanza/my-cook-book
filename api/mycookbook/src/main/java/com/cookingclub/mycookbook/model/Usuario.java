@@ -30,5 +30,5 @@ public class Usuario {
     private List<Receita> receitas;
 
     @OneToMany (fetch = FetchType.LAZY, mappedBy = "usuario")
-    private Comentario comentario;
+    private List<Comentario> comentarios;
 }
