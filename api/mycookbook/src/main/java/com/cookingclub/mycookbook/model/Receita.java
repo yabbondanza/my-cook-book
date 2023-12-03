@@ -45,4 +45,9 @@ public class Receita {
 
     @OneToMany (fetch = FetchType.LAZY, mappedBy = "receita")
     private List<Comentario> comentarios;
+
+
+    public void setId(Long idReceita) {
+        this.idReceita = idReceita;
+    }
 }

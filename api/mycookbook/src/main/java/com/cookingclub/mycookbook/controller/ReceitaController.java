@@ -21,7 +21,7 @@ public class ReceitaController {
     private ReceitaRepository receitaRepository;
 
     @Autowired
-    private UsuarioRepository usuarioRepository; // Supondo que você já tenha um UsuarioRepository
+    private UsuarioRepository usuarioRepository;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -36,14 +36,6 @@ public class ReceitaController {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Receita não encontrada"));
     }
 
-    @GetMapping("/por-usuario/{idUsuario}")
-    @ResponseStatus(HttpStatus.OK)
-    List<Receita> buscarReceitasPorUsuario(@PathVariable(value = "idUsuario") Long idUsuario) {
-        Usuario usuario = usuarioRepository.findById(idUsuario)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado"));
-
-        return receitaRepository.findByUsuario(usuario);
-    }
 
     @PutMapping("/{idReceita}")
     @ResponseStatus(HttpStatus.OK)
@@ -64,5 +56,24 @@ public class ReceitaController {
         }
 
         receitaRepository.deleteById(idReceita);
+    }
+
+
+    @GetMapping("/por-usuario/{idUsuario}")
+    @ResponseStatus(HttpStatus.OK)
+    List<Receita> buscarReceitasPorUsuario(@PathVariable(value = "idUsuario") Long idUsuario) {
+        Usuario usuario = usuarioRepository.findById(idUsuario)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado"));
+
+        return receitaRepository.findByUsuario(usuario);
+    }
+
+    @GetMapping("/por-usuario/{idUsuario}/salvas")
+    @ResponseStatus(HttpStatus.OK)
+    List<Receita> buscarReceitasSalvasPorUsuario(@PathVariable(value = "idUsuario") Long idUsuario) {
+        Usuario usuario = usuarioRepository.findById(idUsuario)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado"));
+
+        return receitaRepository.findByUsuario(usuario);
     }
 }
