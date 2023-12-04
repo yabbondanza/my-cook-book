@@ -11,7 +11,6 @@ import com.cookingclub.mycookbook.repository.UsuarioRepository;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("usuario")
 public class UsuarioController {
     @Autowired
     UsuarioRepository usuarioRepository;
