@@ -22,7 +22,7 @@ public class ReceitaController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    @PostMapping("/cadastrar")
+    @PostMapping("/cadastrar-receita")
     @ResponseStatus(HttpStatus.CREATED)
     void cadastrarReceita(@Valid @RequestBody Receita receita) {
         receitaRepository.save(receita);
@@ -34,7 +34,6 @@ public class ReceitaController {
         return receitaRepository.findById(idReceita)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Receita não encontrada"));
     }
-
 
     @PutMapping("/atualizar/{idReceita}")
     @ResponseStatus(HttpStatus.OK)
@@ -56,7 +55,6 @@ public class ReceitaController {
 
         receitaRepository.deleteById(idReceita);
     }
-
 
     @GetMapping("/buscar-por-usuario/{idUsuario}")
     @ResponseStatus(HttpStatus.OK)
