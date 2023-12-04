@@ -23,13 +23,13 @@ public class ReceitaController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    @PostMapping
+    @PostMapping("/cadastrar")
     @ResponseStatus(HttpStatus.CREATED)
     void cadastrarReceita(@Valid @RequestBody Receita receita) {
         receitaRepository.save(receita);
     }
 
-    @GetMapping("/{idReceita}")
+    @GetMapping("/buscar/{idReceita}")
     @ResponseStatus(HttpStatus.OK)
     Receita buscarReceita(@PathVariable(value = "idReceita") Long idReceita) {
         return receitaRepository.findById(idReceita)
@@ -37,7 +37,7 @@ public class ReceitaController {
     }
 
 
-    @PutMapping("/{idReceita}")
+    @PutMapping("/atualizar/{idReceita}")
     @ResponseStatus(HttpStatus.OK)
     void atualizarReceita(@PathVariable Long idReceita, @Valid @RequestBody Receita novaReceita) {
         if (!receitaRepository.existsById(idReceita)) {
@@ -48,7 +48,7 @@ public class ReceitaController {
         receitaRepository.save(novaReceita);
     }
 
-    @DeleteMapping("/{idReceita}")
+    @DeleteMapping("/deletar/{idReceita}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void deletarReceita(@PathVariable Long idReceita) {
         if (!receitaRepository.existsById(idReceita)) {
@@ -59,7 +59,7 @@ public class ReceitaController {
     }
 
 
-    @GetMapping("/por-usuario/{idUsuario}")
+    @GetMapping("/buscar-por-usuario/{idUsuario}")
     @ResponseStatus(HttpStatus.OK)
     List<Receita> buscarReceitasPorUsuario(@PathVariable(value = "idUsuario") Long idUsuario) {
         Usuario usuario = usuarioRepository.findById(idUsuario)
@@ -68,7 +68,7 @@ public class ReceitaController {
         return receitaRepository.findByUsuario(usuario);
     }
 
-    @GetMapping("/por-usuario/{idUsuario}/salvas")
+    @GetMapping("/salvas-por-usuario/{idUsuario}")
     @ResponseStatus(HttpStatus.OK)
     List<Receita> buscarReceitasSalvasPorUsuario(@PathVariable(value = "idUsuario") Long idUsuario) {
         Usuario usuario = usuarioRepository.findById(idUsuario)
