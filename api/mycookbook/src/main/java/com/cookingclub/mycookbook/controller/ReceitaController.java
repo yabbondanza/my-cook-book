@@ -31,9 +31,9 @@ public class ReceitaController {
 
     @GetMapping("/buscar/{idReceita}")
     @ResponseStatus(HttpStatus.OK)
-    Receita buscarReceita(@PathVariable Long idReceita) {
+    Receita buscarReceita(@PathVariable("idReceita") Long idReceita) {
         return receitaRepository.findById(idReceita)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Receita não encontrada"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Receita não encontrada com o ID: " + idReceita));
     }
 
     @PutMapping("/atualizar/{idReceita}")
