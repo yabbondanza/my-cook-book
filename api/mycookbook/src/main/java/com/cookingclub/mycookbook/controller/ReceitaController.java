@@ -82,4 +82,14 @@ public class ReceitaController {
                 .collect(Collectors.toList());
     }
 
+    @GetMapping("/listar-todas")
+    @ResponseStatus(HttpStatus.OK)
+    List<ReceitaDTOResponse> listarTodasReceitas() {
+        List<Receita> receitas = receitaRepository.findAll();
+    
+        return receitas.stream()
+                .map(receita -> modelMapper.map(receita, ReceitaDTOResponse.class))
+                .collect(Collectors.toList());
+    }    
+
 }
