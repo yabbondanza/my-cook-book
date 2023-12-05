@@ -31,7 +31,7 @@ public class ReceitaController {
     @Autowired
     private ModelMapper modelMapper;
 
-    @PostMapping("/cadastrar")
+    @PostMapping("/cadastrar-receita")
     @ResponseStatus(HttpStatus.CREATED)
     void cadastrarReceita(@Valid @RequestBody ReceitaDTORequest receitaDTO) {
         Receita receita = modelMapper.map(receitaDTO, Receita.class);
