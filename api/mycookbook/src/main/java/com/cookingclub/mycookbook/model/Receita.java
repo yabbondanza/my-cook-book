@@ -44,7 +44,7 @@ public class Receita {
 
     @ManyToMany
     @JoinTable(
-            name = "usuarios_receitas_salvas",
+            name = "receita_salva",
             joinColumns = @JoinColumn(name = "receita_id"),
             inverseJoinColumns = @JoinColumn(name = "usuario_id"))
     private List<Usuario> usuariosQueSalvaram;
