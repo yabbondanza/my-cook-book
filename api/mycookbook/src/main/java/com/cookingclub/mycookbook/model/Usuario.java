@@ -1,6 +1,7 @@
 package com.cookingclub.mycookbook.model;
 
 import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -28,6 +29,9 @@ public class Usuario {
 
     @OneToMany (fetch = FetchType.LAZY, mappedBy = "usuario")
     private List<Receita> receitas;
+
+    @ManyToMany(mappedBy = "usuariosQueSalvaram")
+    private Set<Receita> receitasSalvas;
 
     @OneToMany (fetch = FetchType.LAZY, mappedBy = "usuario")
     private List<Comentario> comentarios;

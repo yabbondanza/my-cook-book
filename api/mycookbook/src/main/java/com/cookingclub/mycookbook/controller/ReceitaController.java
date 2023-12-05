@@ -14,6 +14,7 @@ import jakarta.validation.Valid;
 import java.util.List;
 
 @RestController
+@RequestMapping("/receitas")
 public class ReceitaController {
 
     @Autowired
@@ -22,7 +23,7 @@ public class ReceitaController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    @PostMapping("/cadastrar-receita")
+    @PostMapping("/cadastrar")
     @ResponseStatus(HttpStatus.CREATED)
     void cadastrarReceita(@Valid @RequestBody Receita receita) {
         receitaRepository.save(receita);
@@ -30,9 +31,9 @@ public class ReceitaController {
 
     @GetMapping("/buscar/{idReceita}")
     @ResponseStatus(HttpStatus.OK)
-    Receita buscarReceita(@PathVariable(value = "idReceita") Long idReceita) {
+    Receita buscarReceita(@PathVariable("idReceita") Long idReceita) {
         return receitaRepository.findById(idReceita)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Receita não encontrada"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Receita não encontrada com o ID: " + idReceita));
     }
 
     @PutMapping("/atualizar/{idReceita}")
@@ -56,9 +57,9 @@ public class ReceitaController {
         receitaRepository.deleteById(idReceita);
     }
 
-    @GetMapping("/buscar-por-usuario/{idUsuario}")
+    @GetMapping("/listar-por-usuario/{idUsuario}")
     @ResponseStatus(HttpStatus.OK)
-    List<Receita> buscarReceitasPorUsuario(@PathVariable(value = "idUsuario") Long idUsuario) {
+    List<Receita> listarReceitasPorUsuario(@PathVariable(value = "idUsuario") Long idUsuario) {
         Usuario usuario = usuarioRepository.findById(idUsuario)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado"));
 
@@ -67,10 +68,10 @@ public class ReceitaController {
 
     @GetMapping("/salvas-por-usuario/{idUsuario}")
     @ResponseStatus(HttpStatus.OK)
-    List<Receita> buscarReceitasSalvasPorUsuario(@PathVariable(value = "idUsuario") Long idUsuario) {
+    List<Receita> listarReceitasSalvasPorUsuario(@PathVariable(value = "idUsuario") Long idUsuario) {
         Usuario usuario = usuarioRepository.findById(idUsuario)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado"));
 
-        return receitaRepository.findByUsuario(usuario);
+        return receitaRepository.findByUsuariosQueSalvaram(usuario);
     }
 }
