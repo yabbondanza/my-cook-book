@@ -1,21 +1,25 @@
 package com.cookingclub.mycookbook.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
-
+import com.cookingclub.mycookbook.dto.ReceitaDTO.ReceitaDTORequest;
+import com.cookingclub.mycookbook.dto.ReceitaDTO.ReceitaDTOResponse;
 import com.cookingclub.mycookbook.model.Receita;
 import com.cookingclub.mycookbook.model.Usuario;
 import com.cookingclub.mycookbook.repository.ReceitaRepository;
 import com.cookingclub.mycookbook.repository.UsuarioRepository;
 
 import jakarta.validation.Valid;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
+
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/receitas")
-@CrossOrigin(origins = "*")
 public class ReceitaController {
 
     @Autowired
@@ -24,28 +28,35 @@ public class ReceitaController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    @Autowired
+    private ModelMapper modelMapper;
+
     @PostMapping("/cadastrar")
     @ResponseStatus(HttpStatus.CREATED)
-    void cadastrarReceita(@Valid @RequestBody Receita receita) {
+    void cadastrarReceita(@Valid @RequestBody ReceitaDTORequest receitaDTO) {
+        Receita receita = modelMapper.map(receitaDTO, Receita.class);
+
         receitaRepository.save(receita);
     }
 
     @GetMapping("/buscar/{idReceita}")
     @ResponseStatus(HttpStatus.OK)
-    Receita buscarReceita(@PathVariable("idReceita") Long idReceita) {
-        return receitaRepository.findById(idReceita)
+    ReceitaDTOResponse buscarReceita(@PathVariable("idReceita") Long idReceita) {
+        Receita receita = receitaRepository.findById(idReceita)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Receita não encontrada com o ID: " + idReceita));
+
+        return modelMapper.map(receita, ReceitaDTOResponse.class);
     }
 
     @PutMapping("/atualizar/{idReceita}")
     @ResponseStatus(HttpStatus.OK)
-    void atualizarReceita(@PathVariable Long idReceita, @Valid @RequestBody Receita novaReceita) {
-        if (!receitaRepository.existsById(idReceita)) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Receita não encontrada");
-        }
+    void atualizarReceita(@PathVariable Long idReceita, @Valid @RequestBody ReceitaDTORequest novaReceitaDTO) {
+        Receita receita = receitaRepository.findById(idReceita)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Receita não encontrada"));
 
-        novaReceita.setId(idReceita);
-        receitaRepository.save(novaReceita);
+        modelMapper.map(novaReceitaDTO, receita);
+
+        receitaRepository.save(receita);
     }
 
     @DeleteMapping("/deletar/{idReceita}")
@@ -60,19 +71,15 @@ public class ReceitaController {
 
     @GetMapping("/listar-por-usuario/{idUsuario}")
     @ResponseStatus(HttpStatus.OK)
-    List<Receita> listarReceitasPorUsuario(@PathVariable(value = "idUsuario") Long idUsuario) {
+    List<ReceitaDTOResponse> listarReceitasPorUsuario(@PathVariable(value = "idUsuario") Long idUsuario) {
         Usuario usuario = usuarioRepository.findById(idUsuario)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado"));
 
-        return receitaRepository.findByUsuario(usuario);
+        List<Receita> receitas = receitaRepository.findByUsuario(usuario);
+
+        return receitas.stream()
+                .map(receita -> modelMapper.map(receita, ReceitaDTOResponse.class))
+                .collect(Collectors.toList());
     }
 
-    @GetMapping("/salvas-por-usuario/{idUsuario}")
-    @ResponseStatus(HttpStatus.OK)
-    List<Receita> listarReceitasSalvasPorUsuario(@PathVariable(value = "idUsuario") Long idUsuario) {
-        Usuario usuario = usuarioRepository.findById(idUsuario)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado"));
-
-        return receitaRepository.findByUsuariosQueSalvaram(usuario);
-    }
 }

@@ -2,11 +2,8 @@ package com.cookingclub.mycookbook.model;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.format.annotation.DateTimeFormat;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -41,21 +38,8 @@ public class Receita {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id")
-    @JsonIgnore
     private Usuario usuario;
 
     @OneToMany (fetch = FetchType.LAZY, mappedBy = "receita")
     private List<Comentario> comentarios;
-
-    @ManyToMany
-    @JoinTable(
-            name = "receita_salva",
-            joinColumns = @JoinColumn(name = "receita_id"),
-            inverseJoinColumns = @JoinColumn(name = "usuario_id"))
-    @JsonIgnore
-    private Set<Usuario> usuariosQueSalvaram;
-
-    public void setId(Long idReceita) {
-        this.idReceita = idReceita;
-    }
 }

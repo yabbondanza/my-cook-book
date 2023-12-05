@@ -8,5 +8,4 @@ import com.cookingclub.mycookbook.model.Usuario;
 
 public interface ReceitaRepository extends JpaRepository<Receita, Long> {
     List<Receita> findByUsuario(Usuario usuario);
-    List<Receita> findByUsuariosQueSalvaram(Usuario usuario);
 }
