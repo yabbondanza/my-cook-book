@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@CrossOrigin(origins="*")
+@CrossOrigin("*")
 public class ReceitaController {
 
     @Autowired

@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 @RestController
-@CrossOrigin(origins="*")
+@CrossOrigin("*")
 public class UsuarioController {
 
     @Autowired
