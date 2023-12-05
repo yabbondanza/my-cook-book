@@ -29,6 +29,9 @@ public class Usuario {
     @OneToMany (fetch = FetchType.LAZY, mappedBy = "usuario")
     private List<Receita> receitas;
 
+    @ManyToMany(mappedBy = "usuariosQueSalvaram")
+    private List<Receita> receitasSalvas;
+
     @OneToMany (fetch = FetchType.LAZY, mappedBy = "usuario")
     private List<Comentario> comentarios;
 }
