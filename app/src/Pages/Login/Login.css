@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=DM+Serif+Text&family=Outfit:wght@200;400;700&display=swap');
+
+:root {
+    --accent: #FFA57E;
+    --accent2: #E2A7A6;
+    --primary: #DBEAB6;
+    --secondary: #F6F8F1;
+    --background: #FFFFFF;
+    --text: #00020F;
+    --softText: #454545;
+    --error: #E20E0E;
+}
+
+.coluna-cartao {
+    padding: 30px 70px !important;
+}
+
+
+.col-md-6 > img {
+    width: 100%;
+}
+
+.card-login {
+    width: 100%;
+    background-color: var(--secondary);
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: bold;
+
+    padding: 40px 10px;
+    gap: 20px;
+
+
+    box-shadow: 3px 4px 15px 3px rgba(0, 0, 0, 0.25);
+
+    flex: none;
+    order: 2;
+    flex-grow: 1;
+
+}
+
+
+
+.card-login > h1 {
+    text-align: center;
+    color: var(--softText);
+
+}
+
+.botaoEntrar {
+    border-radius: 50px!important;
+    background-color: var(--primary)!important;
+    border: var(--primary)!important;
+    color: var(--softText) !important;
+    font-weight: bold!important;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25)
+}
+
+.botaoCadastro {
+    border-radius: 50px!important;
+    font-size: 13px!important;
+    font-weight: bold!important;
+    background-color: var(--accent)!important;
+    border: var(--accent)!important;
+    color: var(--background)!important;
+    padding: 2px 8px!important;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25)
+}
+
+.error-message {
+    color: var(--error, #E20E0E);
+    font-family: 'DM Sans', sans-serif!important;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: 5px; 
+}
+
+.img-bg {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: -10;
+}
+

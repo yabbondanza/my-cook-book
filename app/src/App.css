@@ -1,0 +1,30 @@
+:root {
+    --accent: #FFA57E;
+    --accent2: #E2A7A6;
+    --primary: #DBEAB6;
+    --secondary: #F6F8F1;
+    --background: #FFFFFF;
+    --text: #00020F;
+    --softText: #454545;
+    --error: #E20E0E;
+}
+
+.textoSerif {
+    font-family: 'DM Serif Text', serif!important;
+}
+
+.textoSansSerif {
+    font-family: 'DM Sans', sans-serif!important;
+}
+
+.textoBold {
+    font-weight: bold!important;
+}
+
+.bg {
+    background-color: #FFFFFF!important;
+}
+
+.textoBlack {
+    color: var(--text)!important;
+}

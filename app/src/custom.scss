@@ -1,0 +1,22 @@
+$theme-colors: (
+  "accent": #FFA57E,
+  "accent2": #E2A7A6,
+  "primary": #DBEAB6,
+  "secondary": #F6F8F1,
+  "text": #00020F,
+  "softText": #454545,
+  "error": #E20E0E,
+);
+
+
+// Import Bootstrap and its default variables
+@import 'bootstrap';
+
+$background: #FFFFFF;
+body {
+  background-color: $background;
+}
+
+.bg {
+  background-color: $background;
+}
