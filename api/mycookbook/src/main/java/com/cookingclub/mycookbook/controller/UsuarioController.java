@@ -47,6 +47,7 @@ public class UsuarioController {
         return usuario;
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/login")
     @ResponseStatus(HttpStatus.OK)
     Usuario login(@RequestBody Usuario loginUsuario) {
