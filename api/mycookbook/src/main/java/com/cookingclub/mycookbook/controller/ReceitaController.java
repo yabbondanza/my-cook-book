@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/receitas")
+@CrossOrigin(origins="*")
 public class ReceitaController {
 
     @Autowired
