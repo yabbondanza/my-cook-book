@@ -26,7 +26,7 @@ public class UsuarioController {
     @Autowired
     private ModelMapper modelMapper;
 
-    @PostMapping("/cadastrar")
+    @PostMapping("/cadastrar-usuario")
     @ResponseStatus(HttpStatus.CREATED)
     void cadastrarUsuario(@Validated @RequestBody UsuarioDTORequest usuarioDTO) {
         Usuario usuario = modelMapper.map(usuarioDTO, Usuario.class);
@@ -42,7 +42,7 @@ public class UsuarioController {
         usuarioRepository.save(usuario);
     }
 
-    @GetMapping("/buscar/{idUsuario}")
+    @GetMapping("/buscar-usuario/{idUsuario}")
     @ResponseStatus(HttpStatus.OK)
     UsuarioDTOResponse buscarUsuario(@PathVariable(value = "idUsuario") Long idUsuario) {
         Usuario usuario = usuarioRepository.findById(idUsuario)

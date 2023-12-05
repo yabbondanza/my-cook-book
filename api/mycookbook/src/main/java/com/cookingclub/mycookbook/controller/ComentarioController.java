@@ -21,7 +21,7 @@ public class ComentarioController {
     @Autowired
     private ModelMapper modelMapper;
 
-    @PostMapping("/adicionar")
+    @PostMapping("/adicionar-comentario")
     public String adicionarComentario(@RequestBody ComentarioDTORequest comentarioDTORequest) {
         Comentario comentario = modelMapper.map(comentarioDTORequest, Comentario.class);
         comentarioRepository.save(comentario);
@@ -44,14 +44,14 @@ public class ComentarioController {
                 .collect(Collectors.toList());
     }
 
-    @PutMapping("/editar")
+    @PutMapping("/editar-comentario")
     public String editarComentario(@RequestBody ComentarioDTORequest comentarioDTORequest) {
         Comentario comentario = modelMapper.map(comentarioDTORequest, Comentario.class);
         comentarioRepository.save(comentario);
         return "Comentário editado com sucesso";
     }
 
-    @DeleteMapping("/excluir/{idComentario}")
+    @DeleteMapping("/excluir-comentario/{idComentario}")
     public String excluirComentario(@PathVariable Long idComentario) {
         comentarioRepository.deleteById(idComentario);
         return "Comentário excluído com sucesso";

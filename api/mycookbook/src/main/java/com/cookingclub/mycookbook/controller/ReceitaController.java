@@ -39,7 +39,7 @@ public class ReceitaController {
         receitaRepository.save(receita);
     }
 
-    @GetMapping("/buscar/{idReceita}")
+    @GetMapping("/buscar-receita/{idReceita}")
     @ResponseStatus(HttpStatus.OK)
     ReceitaDTOResponse buscarReceita(@PathVariable("idReceita") Long idReceita) {
         Receita receita = receitaRepository.findById(idReceita)
@@ -48,7 +48,7 @@ public class ReceitaController {
         return modelMapper.map(receita, ReceitaDTOResponse.class);
     }
 
-    @PutMapping("/atualizar/{idReceita}")
+    @PutMapping("/atualizar-receita/{idReceita}")
     @ResponseStatus(HttpStatus.OK)
     void atualizarReceita(@PathVariable Long idReceita, @Valid @RequestBody ReceitaDTORequest novaReceitaDTO) {
         Receita receita = receitaRepository.findById(idReceita)
@@ -59,7 +59,7 @@ public class ReceitaController {
         receitaRepository.save(receita);
     }
 
-    @DeleteMapping("/deletar/{idReceita}")
+    @DeleteMapping("/deletar-receita/{idReceita}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void deletarReceita(@PathVariable Long idReceita) {
         if (!receitaRepository.existsById(idReceita)) {
@@ -82,7 +82,7 @@ public class ReceitaController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/listar-todas")
+    @GetMapping("/listar-todas-receitas")
     @ResponseStatus(HttpStatus.OK)
     List<ReceitaDTOResponse> listarTodasReceitas() {
         List<Receita> receitas = receitaRepository.findAll();
