@@ -33,7 +33,7 @@ public class ReceitaController {
 
     @PostMapping("/cadastrar")
     @ResponseStatus(HttpStatus.CREATED)
-    void cadastrarReceita(@Valid @RequestBody ReceitaDTORequest receitaDTO) {
+    public void cadastrarReceita(@Valid @RequestBody ReceitaDTORequest receitaDTO) {
         Receita receita = modelMapper.map(receitaDTO, Receita.class);
 
         receitaRepository.save(receita);
@@ -41,7 +41,7 @@ public class ReceitaController {
 
     @GetMapping("/buscar/{idReceita}")
     @ResponseStatus(HttpStatus.OK)
-    ReceitaDTOResponse buscarReceita(@PathVariable("idReceita") Long idReceita) {
+    public ReceitaDTOResponse buscarReceita(@PathVariable("idReceita") Long idReceita) {
         Receita receita = receitaRepository.findById(idReceita)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Receita não encontrada com o ID: " + idReceita));
 
@@ -50,7 +50,7 @@ public class ReceitaController {
 
     @PutMapping("/atualizar/{idReceita}")
     @ResponseStatus(HttpStatus.OK)
-    void atualizarReceita(@PathVariable Long idReceita, @Valid @RequestBody ReceitaDTORequest novaReceitaDTO) {
+    public void atualizarReceita(@PathVariable Long idReceita, @Valid @RequestBody ReceitaDTORequest novaReceitaDTO) {
         Receita receita = receitaRepository.findById(idReceita)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Receita não encontrada"));
 
@@ -61,7 +61,7 @@ public class ReceitaController {
 
     @DeleteMapping("/deletar/{idReceita}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    void deletarReceita(@PathVariable Long idReceita) {
+    public void deletarReceita(@PathVariable Long idReceita) {
         if (!receitaRepository.existsById(idReceita)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Receita não encontrada");
         }
@@ -71,7 +71,7 @@ public class ReceitaController {
 
     @GetMapping("/listar-por-usuario/{idUsuario}")
     @ResponseStatus(HttpStatus.OK)
-    List<ReceitaDTOResponse> listarReceitasPorUsuario(@PathVariable(value = "idUsuario") Long idUsuario) {
+    public List<ReceitaDTOResponse> listarReceitasPorUsuario(@PathVariable(value = "idUsuario") Long idUsuario) {
         Usuario usuario = usuarioRepository.findById(idUsuario)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado"));
 
@@ -84,7 +84,7 @@ public class ReceitaController {
 
     @GetMapping("/listar-todas")
     @ResponseStatus(HttpStatus.OK)
-    List<ReceitaDTOResponse> listarTodasReceitas() {
+    public List<ReceitaDTOResponse> listarTodasReceitas() {
         List<Receita> receitas = receitaRepository.findAll();
     
         return receitas.stream()

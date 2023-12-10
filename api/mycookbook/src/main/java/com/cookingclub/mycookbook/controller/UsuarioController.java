@@ -28,7 +28,7 @@ public class UsuarioController {
 
     @PostMapping("/cadastrar")
     @ResponseStatus(HttpStatus.CREATED)
-    void cadastrarUsuario(@Validated @RequestBody UsuarioDTORequest usuarioDTO) {
+    public void cadastrarUsuario(@Validated @RequestBody UsuarioDTORequest usuarioDTO) {
         Usuario usuario = modelMapper.map(usuarioDTO, Usuario.class);
 
         if (usuarioRepository.findByEmail(usuario.getEmail()).isPresent()) {
@@ -44,7 +44,7 @@ public class UsuarioController {
 
     @GetMapping("/buscar/{idUsuario}")
     @ResponseStatus(HttpStatus.OK)
-    UsuarioDTOResponse buscarUsuario(@PathVariable(value = "idUsuario") Long idUsuario) {
+    public UsuarioDTOResponse buscarUsuario(@PathVariable(value = "idUsuario") Long idUsuario) {
         Usuario usuario = usuarioRepository.findById(idUsuario)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado"));
         return modelMapper.map(usuario, UsuarioDTOResponse.class);
@@ -52,7 +52,7 @@ public class UsuarioController {
 
     @GetMapping("/buscar-por-email/{email}")
     @ResponseStatus(HttpStatus.OK)
-    UsuarioDTOResponse buscarPorEmail(@PathVariable(value = "email") String email) {
+    public UsuarioDTOResponse buscarPorEmail(@PathVariable(value = "email") String email) {
         Usuario usuario = usuarioRepository.findByEmail(email)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado"));
 
