@@ -2,7 +2,6 @@ package com.cookingclub.mycookbook.dto.ReceitaDTO;
 
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 import com.cookingclub.mycookbook.dto.ComentarioDTO.ComentarioDTOResponse;
 import com.cookingclub.mycookbook.dto.ReceitaDTO.ReceitaDTOResponse;
@@ -17,6 +16,6 @@ public class ReceitaDTOResponse {
     private String tipoVersao;
     private Long receitaOriginal;
     private Date dataHora;
-    private UUID usuario_id;
+    private Long idUsuario;
     private List<ComentarioDTOResponse> comentarios;
 }
