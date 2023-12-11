@@ -3,7 +3,7 @@ import illustration from './illustration.svg';
 import {Button, Container, Form, Toast} from "react-bootstrap";
 import {useNavigate, Link} from "react-router-dom";
 import "./Login.css"
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import api from "../../services/api";
 
 function LoginPage() {
@@ -17,9 +17,12 @@ function LoginPage() {
 
     const handleSideEffectLogin = (response) => {
         console.log("RESPOSTA LOGIN",response);
-        if (response.data.message === "Login realizado com sucesso!") {
+        if (response.data.message === "Usuário autorizado a entrar") {
+            console.log("cheguei 1");
             localStorage.setItem("userID", response.data.id);
+            console.log("cheguei 2");
             console.log(campoEmail, campoSenha);
+            console.log("cheguei 3");
             navigate('/homepage');
         } else if (response.data.message === "Credenciais inválidas") {
             toggleShowA();
@@ -31,6 +34,7 @@ function LoginPage() {
             setSenhaIncorretaError(false);
         }
 
+
     }
 
     const navigate = useNavigate();
@@ -41,7 +45,7 @@ function LoginPage() {
     const handleSubmit = (e) => {
         e.preventDefault();
         (campoEmail !== "" && campoSenha !== "") ?
-            (api.post("/login", {email: campoEmail, password: campoSenha})
+            (api.post("/login", {email: campoEmail, senha: campoSenha})
             .then((response) => {
                 handleSideEffectLogin(response)
             })
