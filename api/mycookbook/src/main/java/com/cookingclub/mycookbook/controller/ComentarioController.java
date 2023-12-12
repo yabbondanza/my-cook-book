@@ -4,6 +4,9 @@ import com.cookingclub.mycookbook.dto.ComentarioDTO.ComentarioDTORequest;
 import com.cookingclub.mycookbook.dto.ComentarioDTO.ComentarioDTOResponse;
 import com.cookingclub.mycookbook.model.Comentario;
 import com.cookingclub.mycookbook.repository.ComentarioRepository;
+
+import jakarta.validation.Valid;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -59,11 +62,16 @@ public class ComentarioController {
         return modelMapper.map(comentario, ComentarioDTOResponse.class);
     }
 
-    @PutMapping("/editar-comentario")
+    @PutMapping("/editar-comentario/{idComentario}")
     @ResponseStatus(HttpStatus.OK)
-    public String editarComentario(@RequestBody ComentarioDTORequest comentarioDTORequest) {
-        Comentario comentario = modelMapper.map(comentarioDTORequest, Comentario.class);
+    public String editarComentario(@PathVariable Long idComentario, @Valid @RequestBody ComentarioDTORequest comentarioDTORequest) {
+        Comentario comentario = comentarioRepository.findById(idComentario)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Comentário não encontrado"));
+
+        modelMapper.map(comentarioDTORequest, comentario);
+
         comentarioRepository.save(comentario);
+
         return "Comentário editado com sucesso";
     }
 
