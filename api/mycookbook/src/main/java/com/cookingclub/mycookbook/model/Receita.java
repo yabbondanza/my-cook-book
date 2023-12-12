@@ -40,6 +40,6 @@ public class Receita {
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
-    @OneToMany (fetch = FetchType.LAZY, mappedBy = "receita")
+    @OneToMany (fetch = FetchType.LAZY, mappedBy = "receita", cascade = CascadeType.ALL)
     private List<Comentario> comentarios;
 }
