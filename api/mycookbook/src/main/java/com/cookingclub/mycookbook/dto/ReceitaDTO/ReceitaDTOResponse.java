@@ -10,6 +10,7 @@ import lombok.Data;
 
 @Data
 public class ReceitaDTOResponse {
+    private Long idReceita;
     private String nome;
     private String ingredientes;
     private String preparo;
